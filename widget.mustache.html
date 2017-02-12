@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<script src="https://cdn.pubnub.com/sdk/javascript/pubnub.4.4.3.js"></script>
+</head>
+<body>
+	<h1>hello</h1>
+	<script type="text/javascript">
+
+    var pubnubDemo = new PubNub({
+        publishKey: 'pub-c-dd67de64-9c14-4790-906e-d26042ada52f',
+        subscribeKey: 'sub-c-103fb66a-f0de-11e6-acae-0619f8945a4f'
+    });
+
+
+		pubnubDemo.addListener({
+		    message: function(message){
+		        console.log(message)
+		    }
+		})
+
+		pubnubDemo.subscribe({
+		    channels: ['demo_tutorial']
+		});
+
+		// Publish a simple message to the demo_tutorial channel
+		pubnubDemo.publish({
+		    message: {
+		        "color" : "blue"
+		    },
+		    channel: 'demo_tutorial'
+		});
+	</script>
+</body>
+
+
+</html>
