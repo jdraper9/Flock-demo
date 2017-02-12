@@ -3,9 +3,13 @@
 <head>
 	<title></title>
 	<script src="https://cdn.pubnub.com/sdk/javascript/pubnub.4.4.3.js"></script>
+	    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script> 
+
+
 </head>
 <body>
-	<h1>hello</h1>
+	<h1 id="test">hello</h1>
+	<button id='damn-son'></button>
 	<script type="text/javascript">
 
     var pubnubDemo = new PubNub({
@@ -17,6 +21,7 @@
 		pubnubDemo.addListener({
 		    message: function(message){
 		        console.log(message)
+		        $('#test').html(message.message.color[0])
 		    }
 		})
 
@@ -24,12 +29,16 @@
 		    channels: ['demo_tutorial']
 		});
 
-		// Publish a simple message to the demo_tutorial channel
-		pubnubDemo.publish({
-		    message: {
-		        "color" : "blue"
-		    },
-		    channel: 'demo_tutorial'
+		
+
+		$('#damn-son').on('click', function(){
+			// Publish a simple message to the demo_tutorial channel
+			pubnubDemo.publish({
+			    message: {
+			        "color" : ["blue", "hello"]
+			    },
+			    channel: 'demo_tutorial'
+			});
 		});
 	</script>
 </body>
